@@ -1,0 +1,120 @@
+Pytanie 1: Kiedy koronowany był Bolesław Chrobry?
+A: 1902
+B: pomidor
+C: 1025
+D: pietruszka
+poprawna:C
+Pytanie 2: Jakie miasto było pierwszą stolicą Polski?
+A: Kraków
+B: Gniezno
+C: Warszawa
+D: Poznań
+poprawna:B
+Pytanie 3: Kto był autorem „Trenów”?
+A: Henryk Sienkiewicz
+B: Jan Kochanowski
+C: Adam Mickiewicz
+D: Juliusz Słowacki
+poprawna:B
+Pytanie 4: W którym roku Polska wstąpiła do Unii Europejskiej?
+A: 2004
+B: 1999
+C: 2010
+D: 1989
+poprawna:A
+Pytanie 5: Jak nazywa się najwyższy szczyt Polski?
+A: Giewont
+B: Rysy
+C: Śnieżka
+D: Babia Góra
+poprawna:B
+Pytanie 6: Kto był pierwszym prezydentem III Rzeczypospolitej?
+A: Lech Wałęsa
+B: Wojciech Jaruzelski
+C: Aleksander Kwaśniewski
+D: Bronisław Komorowski
+poprawna:B
+Pytanie 7: W którym wieku powstała Konstytucja 3 Maja?
+A: XVII
+B: XVIII
+C: XIX
+D: XX
+poprawna:B
+Pytanie 8: Która rzeka jest najdłuższa w Polsce?
+A: Wisła
+B: Odra
+C: Warta
+D: Bug
+poprawna:A
+Pytanie 9: Jakie wydarzenie historyczne zapoczątkowało II wojnę światową?
+A: Bitwa pod Grunwaldem
+B: Zamach majowy
+C: Atak Niemiec na Polskę
+D: Powstanie Warszawskie
+poprawna:C
+Pytanie 10: Kto był twórcą teorii heliocentrycznej?
+A: Isaac Newton
+B: Mikołaj Kopernik
+C: Galileusz
+D: Kartezjusz
+poprawna:B
+Pytanie 11: W którym mieście znajduje się Wawel?
+A: Warszawa
+B: Gniezno
+C: Kraków
+D: Lublin
+poprawna:C
+Pytanie 12: Jak nazywa się hymn Polski?
+A: Rota
+B: Mazurek Dąbrowskiego
+C: Gaude Mater Polonia
+D: Boże, coś Polskę
+poprawna:B
+Pytanie 13: Kto był autorem „Chłopów”?
+A: Bolesław Prus
+B: Henryk Sienkiewicz
+C: Władysław Reymont
+D: Eliza Orzeszkowa
+poprawna:C
+Pytanie 14: W którym roku Polska odzyskała niepodległość po zaborach?
+A: 1914
+B: 1918
+C: 1920
+D: 1939
+poprawna:B
+Pytanie 15: Jakie miasto jest siedzibą Trybunału Konstytucyjnego?
+A: Kraków
+B: Gdańsk
+C: Warszawa
+D: Wrocław
+poprawna:C
+Pytanie 16: Które jezioro jest największe w Polsce pod względem powierzchni?
+A: Śniardwy
+B: Mamry
+C: Hańcza
+D: Morskie Oko
+poprawna:A
+Pytanie 17: Który polski naukowiec zdobył Nagrodę Nobla w dziedzinie chemii w 1911 roku?
+A: Ignacy Łukasiewicz
+B: Maria Skłodowska-Curie
+C: Ludwik Hirszfeld
+D: Jan Czochralski
+poprawna:B
+Pytanie 18: Kto jest autorem słów: „Litwo! Ojczyzno moja!”?
+A: Adam Mickiewicz
+B: Juliusz Słowacki
+C: Cyprian Kamil Norwid
+D: Zygmunt Krasiński
+poprawna:A
+Pytanie 19: Kiedy miało miejsce Powstanie Warszawskie?
+A: 1918
+B: 1939
+C: 1944
+D: 1945
+poprawna:C
+Pytanie 20: Jak nazywa się najwyższy organ sądownictwa w Polsce?
+A: Trybunał Konstytucyjny
+B: Sąd Najwyższy
+C: Krajowa Rada Sądownictwa
+D: Sąd Okręgowy
+poprawna:B
