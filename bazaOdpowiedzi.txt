@@ -67,3 +67,6 @@ B
 EXIT
 87412dd koniec
 
+123alala
+123alala koniec
+

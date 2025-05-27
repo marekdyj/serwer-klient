@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.sql.*;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -11,9 +12,14 @@ public class Server {
     private static List<Question> questions = Collections.synchronizedList(new ArrayList<>());
     private static ExecutorService executor;
 
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/quiz";
+    private static final String DB_USER = "root";
+    private static final String DB_PASS = ""; // lub Twoje hasło
+
     public static void main(String[] args) throws IOException {
         loadConfig();
-        loadQuestions("bazaPytan.txt");
+//        loadQuestions("bazaPytan.txt");
+        loadQuestionsFromDB();
 
         ServerSocket serverSocket = new ServerSocket(PORT);
         System.out.println("Serwer uruchomiony...");
@@ -40,32 +46,41 @@ public class Server {
         executor = Executors.newFixedThreadPool(MAX_CLIENTS);
     }
 
-    private static void loadQuestions(String fileName) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
-        String line;
-        List<String> qLines = new ArrayList<>();
-        while ((line = reader.readLine()) != null) {
-            if (line.isEmpty()) continue;
-            qLines.add(line);
-            if (qLines.size() == 6) {
-                questions.add(new Question(qLines));
-                qLines.clear();
+    private static void loadQuestionsFromDB() {
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM questions");
+
+            while (rs.next()) {
+                questions.add(new Question(
+                        rs.getInt("id"),
+                        rs.getString("question_text"),
+                        new String[]{
+                                rs.getString("answer_a"),
+                                rs.getString("answer_b"),
+                                rs.getString("answer_c"),
+                                rs.getString("answer_d")
+                        },
+                        rs.getString("correct_answer")
+                ));
             }
+
+        } catch (SQLException e) {
+            System.out.println("Błąd podczas wczytywania pytań z bazy: " + e.getMessage());
         }
-        reader.close();
     }
 
     static class Question {
         String questionText;
         String[] answers = new String[4];
         String correctAnswer;
+        int id;
 
-        Question(List<String> lines) {
-            questionText = lines.get(0);
-            for (int i = 0; i < 4; i++) {
-                answers[i] = lines.get(i + 1);
-            }
-            correctAnswer = lines.get(5).split(":")[1];
+        Question(int id, String questionText, String[] answers, String correctAnswer) {
+            this.id = id;
+            this.questionText = questionText;
+            this.answers = answers;
+            this.correctAnswer = correctAnswer;
         }
 
         String toSendFormat() {
@@ -83,7 +98,8 @@ public class Server {
 
         public void run() {
             try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
+                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                 Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
                 try{
                     username = in.readLine();
                 }
@@ -108,6 +124,13 @@ public class Server {
                     if (response != null && response.equalsIgnoreCase(q.correctAnswer)) {
                         score++;
                     }
+                    try (PreparedStatement stmt = conn.prepareStatement(
+                            "INSERT INTO answers (username, question_id, user_answer) VALUES (?, ?, ?)")) {
+                        stmt.setString(1, username);
+                        stmt.setInt(2, q.id);
+                        stmt.setString(3, response);
+                        stmt.executeUpdate();
+                    }
                     if(response.equalsIgnoreCase("exit")) {
                         break;
                     }
@@ -118,21 +141,30 @@ public class Server {
 
                 // Zapisz odpowiedzi
                 synchronized (Server.class) {
-                    BufferedWriter answersWriter = new BufferedWriter(new FileWriter("bazaOdpowiedzi.txt", true));
-                    answersWriter.write(username + "\n");
-                    for (String ans : studentAnswers) {
-                        answersWriter.write(ans + "\n");
-                    }
-                    answersWriter.write(username+" koniec\n\n");
-                    answersWriter.close();
+//                    BufferedWriter answersWriter = new BufferedWriter(new FileWriter("bazaOdpowiedzi.txt", true));
+//                    answersWriter.write(username + "\n");
+//                    for (String ans : studentAnswers) {
+//                        answersWriter.write(ans + "\n");
+//                    }
+//                    answersWriter.write(username+" koniec\n\n");
+//                    answersWriter.close();
+//
+//                    BufferedWriter resultsWriter = new BufferedWriter(new FileWriter("wyniki.txt", true));
+//                    resultsWriter.write(username+" wynik: " + score + "/" + questions.size() + "\n");
+//                    resultsWriter.close();
 
-                    BufferedWriter resultsWriter = new BufferedWriter(new FileWriter("wyniki.txt", true));
-                    resultsWriter.write(username+" wynik: " + score + "/" + questions.size() + "\n");
-                    resultsWriter.close();
+                    try (PreparedStatement stmt = conn.prepareStatement(
+                            "INSERT INTO results (username, score) VALUES (?, ?)")) {
+                        stmt.setString(1, username);
+                        stmt.setInt(2, score);
+                        stmt.executeUpdate();
+                    }
                 }
 
             } catch (IOException e) {
                 System.out.println("Błąd: " + e.getMessage());
+            }catch (java.sql.SQLException s){
+                System.out.println("Błąd: " + s.getMessage());
             }
         }
     }

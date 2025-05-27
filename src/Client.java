@@ -24,7 +24,7 @@ public class Client {
              Scanner scanner = new Scanner(System.in)) {
             System.out.println("Podaj swój nr albumu");
             USERNAME = scanner.nextLine();
-            if(USERNAME.isEmpty()) {
+            if (USERNAME.isEmpty()) {
                 System.out.println("Nie podano nr albumu. Nazwa użytkownika: 'student'");
                 USERNAME = "student"; // Ustaw domyślną nazwę użytkownika
             }
@@ -53,7 +53,7 @@ public class Client {
                             break;
                         }
                     }
-                    if (answer == null|| answer.isEmpty()) {
+                    if (answer == null || answer.isEmpty()) {
                         answer = "brak odpowiedzi"; // Ustaw domyślną odpowiedź, jeśli czas minął
                         System.out.println("Czas na odpowiedź minął!");
                     }
@@ -66,6 +66,7 @@ public class Client {
             System.out.println("Błąd: " + e.getMessage());
         }
     }
+
     private static void loadConfig() throws IOException {
         List<String> configLines = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(CONFIG_FILE));
