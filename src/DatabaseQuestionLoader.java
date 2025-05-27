@@ -14,6 +14,7 @@ public class DatabaseQuestionLoader {
     private static final String PASSWORD = "";
     private static List<Question> questions = Collections.synchronizedList(new ArrayList<>());
     private static final String QUESTIONS_FILE = "bazaPytan.txt";
+
     private static void loadQuestions(String fileName) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         String line;
