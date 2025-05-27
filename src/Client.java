@@ -43,7 +43,7 @@ public class Client {
                 String answer = null;
                 // Po odebraniu 5 linii pytań, pobierz odpowiedź
                 if (line.startsWith("D:")) {
-                    System.out.print("Wpisz odpowiedź (A/B/C/D): ");
+                    System.out.print("Wpisz odpowiedź (A/B/C/D, wiele odpowiedzi wpisz w kolejności alfabetycznej bez odstępów): ");
                     // Rozpoczynamy odliczanie czasu
                     long startTime = System.currentTimeMillis();
 

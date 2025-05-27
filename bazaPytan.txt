@@ -1,9 +1,9 @@
 Pytanie 1: Kiedy koronowany był Bolesław Chrobry?
 A: 1902
-B: pomidor
+B: 1025
 C: 1025
 D: pietruszka
-poprawna:C
+poprawna:bc
 Pytanie 2: Jakie miasto było pierwszą stolicą Polski?
 A: Kraków
 B: Gniezno
